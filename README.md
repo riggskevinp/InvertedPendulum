@@ -45,7 +45,7 @@ Gary implemented an LQR for an inverted pendulum system using the content from a
 
 Static capture of current visualization:
 
-    ![Initial ](PoCScreenCapture.PNG)
+![Initial ](PoCScreenCapture.PNG)
 
 ### Simulation
 
