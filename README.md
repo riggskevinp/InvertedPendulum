@@ -9,7 +9,7 @@ The main opportunity that presented itself was the dynamic Linear Quadratic Regu
 There were other opportunities such as the extended Kalman Filter used for localization.
 The nice part of that application is it can build up very large matrices depending on how many landmarks you are using.
 
-I chose the LQR though.
+I chose the LQR.
 
 First I looked for existing solutions and found a good jumping off point through a [blog post from Gary Evans](http://www.taumuon.co.uk/2016/02/lqr-control-of-inverted-pendulum-in-c-using-eigen.html)
 Gary implemented an LQR for an inverted pendulum system using the content from an MIT MOOC, [System Modeling](https://ctms.engin.umich.edu/CTMS/index.php?example=InvertedPendulum&section=SystemModeling)
@@ -44,13 +44,13 @@ Gary implemented an LQR for an inverted pendulum system using the content from a
     Currently, the simulation creates a state for ever millisecond.
 
 Static capture of current visualization:
-	![Initial ](PoCScreenCapture.PNG)
+
+    ![Initial ](PoCScreenCapture.PNG)
 
 ### Simulation
 
 - Broken into the main InvertedPendulumSim and InvertedPendulumLinearDynamics.
 - SystemParameters currently holds a minor portion of the simulation logic as it calculates the moment of inertia about the center of the pole(pendulum.)
-- 
 
 ### IO
 
