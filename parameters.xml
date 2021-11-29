@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<system>
+    <cart>
+        <mass>0.5</mass>
+    </cart>
+    <pendulum>
+        <mass>0.2</mass>
+        <length>0.3</length>
+        <initial_angle>-0.5</initial_angle>
+    </pendulum>
+    <friction>0.1</friction>
+    <gravity>9.8</gravity>
+</system>

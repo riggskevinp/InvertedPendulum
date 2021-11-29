@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<system>
+    <cart>
+        <mass>0.5</mass>
+    </cart>
+    <pendulum>
+        <mass>0.2</mass>
+        <length>0.3</length>
+    </pendulum>
+    <combined_moment_of_inertia>0.006</combined_moment_of_inertia>
+    <friction>0.1</friction>
+    <gravity>9.8</gravity>
+</system>
