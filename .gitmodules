@@ -1,0 +1,6 @@
+[submodule "project/eigen"]
+	path = project/eigen
+	url = https://gitlab.com/libeigen/eigen.git
+[submodule "project/pugixml"]
+	path = project/pugixml
+	url = https://github.com/zeux/pugixml.git
