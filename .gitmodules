@@ -1,6 +1,6 @@
-[submodule "project/eigen"]
-	path = project/eigen
+[submodule "eigen"]
+	path = eigen
 	url = https://gitlab.com/libeigen/eigen.git
-[submodule "project/pugixml"]
-	path = project/pugixml
+[submodule "pugixml"]
+	path = pugixml
 	url = https://github.com/zeux/pugixml.git
