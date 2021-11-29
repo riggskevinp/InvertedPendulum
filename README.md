@@ -43,7 +43,7 @@ Gary implemented an LQR for an inverted pendulum system using the content from a
     Setting the timeout duration, in milliseconds, is how we can control the playback speed.
     Currently, the simulation creates a state for ever millisecond.
 
-Static capture of current visualization:
+Static capture of current visualization, a gif would have been nice:
 
 ![Initial ](PoCScreenCapture.PNG)
 
