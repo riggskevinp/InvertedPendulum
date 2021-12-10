@@ -1,4 +1,5 @@
 #include "InvertedPendulumLinearDynamics.h"
+#include <iostream>
 
 InvertedPendulumLinearDynamics::InvertedPendulumLinearDynamics(const SystemParameters& system_params)
 {
@@ -49,4 +50,19 @@ const Eigen::Matrix<double, 1, 4>& InvertedPendulumLinearDynamics::GetKMatrix()
         }
             } once;
     return once.K;
+}
+
+// K calculated at runtime using cuda
+// Not working
+Eigen::Matrix<double, 1, 4> InvertedPendulumLinearDynamics::GetKMatrixCuda()
+{
+    // K = (R + B.T * Q * B)^-1 * B.T * Q * A
+    // Translate this to cuda?  opencl?
+    Eigen::Matrix<double, 1, 1> R{1};
+    Eigen::Matrix<double, 1, 4> K;
+    auto temp = _b.transpose() * _q * _b;
+    K = temp.inverse() * _b.transpose() * _q * _a;
+
+    return K;
+
 }

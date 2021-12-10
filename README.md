@@ -24,15 +24,22 @@ Gary implemented an LQR for an inverted pendulum system using the content from a
     - [] Allow modification of playback speed, currently set at compile time
 - [x] Add a gui/visualization so that users can see the performance of their system
 - [x] Use Eigen for explicit vectorization to make matrix operations fast
-- [] Calculate control K dynamically
-- [] Calculate linearized system dynamically
-- [] Look to incorporate cuda/opencl to calculate K and do other matrix operations
+- [] Calculate K at Runtime using Eigen and Cuda.  Currently hitting unknown problems, result is just wrong. Probably an issue with the implemented calculation.
+- [x] Replace Eigen operations with Cuda kernels
+    - [x] Demonstrate Eigen is faster, a better tool, than GPU for this job
 - [] Switch from LQR to dLQR
 - [] If there are multiple implementations of the same calculations, provide timing analysis
+- [] Reimplement all calculations to be done by gpu and time against hybrid and Eigen only
 - [] Possibly incorporate WASM and WASM hardware acceleration
 - [] Overall, clean everything up.  It's pretty sloppy right now.
 
-## Current System
+## Requirements to Run
+
+- Qt5 Installed
+- Cmake Installed
+- Cuda compatible device and Cuda Installed
+- Git
+- Qt Creator Suggested, makes it easier to run.
 
 ### Visualization
 
@@ -56,5 +63,27 @@ Static capture of current visualization, a gif would have been nice:
 
 - Currently only the simulation uses parameters from the xml
 - Need to pull SystemParameters up a level and out of Simulation
+    - Specifically so that we can update the playback speed at runtime without recompiling
+    - Also would be good to be able to switch between Eigen and Eigen/GPU hybrid implementations
 
-###
+### Eigen vs Cuda
+
+I initially set out to calculate K, a single time, at run time with both Eigen and Cuda and compare the times.
+This is a relatively fair comparison.
+Issues I faced with calculating K became insurmountable and I pivoted.
+Having only 1.5 weeks available while balancing other responsibilities proved to be too much.
+
+The result is I replaced part of the simulation that should not be done by a GPU.
+Part of my analysis is demonstrating this which was exceedingly easy to do.
+This part of the simulation consists of basic linear algebra on small vectors and matrices.
+Small enough that they fit in the registers of a cpu.
+This is a job that Eigen is exlicitly designed to do while GPUs are better at operations with larger data sizes.
+The main problem with using the gpu is all of the data transfer between devices.
+At least on my machine.
+But even on machines where there is more shared hardware between the gpu and cpu, the sizes are small enough that I predict Eigen would still be a better choice.
+
+The time differences are large enough that anecdotal evidence expresses the difference.
+Eigen only, visual starts almost instantly.
+Eigen + Cuda, visual starts between 30 seconds and a minute for inputs between 10,000 and 50,000
+
+Final note, transferring all the calculations to a gpu device might be faster than a hybrid approach
