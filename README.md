@@ -15,6 +15,9 @@ First I looked for existing solutions and found a good jumping off point through
 Gary implemented an LQR for an inverted pendulum system using the content from an MIT MOOC, [System Modeling](https://ctms.engin.umich.edu/CTMS/index.php?example=InvertedPendulum&section=SystemModeling)
 [State-Space Methods for Controller Design](https://ctms.engin.umich.edu/CTMS/index.php?example=InvertedPendulum&section=ControlStateSpace#6),which appears to also have contributions from Mathworks, UMich and Carnegie Mellon.
 
+So Eigen itself does use Cuda but I don't have evidence that how I am using it explicitly uses cuda.
+Specifically, I assume it is not using it in my usage because I'm doing small matrix calculations.
+
 ## Goals
 - [x] Use cmake to enable easier crossplatform developement
 - [x] Add unit test framework to enable faster iterations
