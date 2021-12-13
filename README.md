@@ -9,7 +9,7 @@ https://spectrum.ieee.org/whoa-quadrotors-play-catch-with-inverted-pendulum#togg
 It was strangely difficult for me to come up with a gpgpu/hetergenous computing application I was interested in.
 I looked at raytracing, path planning and some computational geometry algorithms, among others, but didn't find something I could cleanly implement.
 After looking back at some introduction to robotics coursework, I decided to look into writing accelerated versions of some of the programs.
-The main opportunity that presented itself was the dynamic Linear Quadratic Regulator control strategy as it has a lot of matrix operations.
+The main opportunity that presented itself was the discrete Linear Quadratic Regulator control strategy as it has a lot of matrix operations.
 There were other opportunities such as the extended Kalman Filter used for localization.
 The nice part of that application is it can build up very large matrices depending on how many landmarks you are using.
 
