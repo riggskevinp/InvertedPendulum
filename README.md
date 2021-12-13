@@ -9,7 +9,9 @@ The main opportunity that presented itself was the dynamic Linear Quadratic Regu
 There were other opportunities such as the extended Kalman Filter used for localization.
 The nice part of that application is it can build up very large matrices depending on how many landmarks you are using.
 
-I chose the LQR.
+I chose the LQR.  Mostly because I had the initial algorithm implemented in python
+and seemed like a good one to parallelize.
+
 
 First I looked for existing solutions and found a good jumping off point through a [blog post from Gary Evans](http://www.taumuon.co.uk/2016/02/lqr-control-of-inverted-pendulum-in-c-using-eigen.html)
 Gary implemented an LQR for an inverted pendulum system using the content from an MIT MOOC, [System Modeling](https://ctms.engin.umich.edu/CTMS/index.php?example=InvertedPendulum&section=SystemModeling)
@@ -17,8 +19,13 @@ Gary implemented an LQR for an inverted pendulum system using the content from a
 
 So Eigen itself does use Cuda but I don't have evidence that how I am using it explicitly uses cuda.
 Specifically, I assume it is not using it in my usage because I'm doing small matrix calculations.
+You can use Eigen inside of Cuda kernels which is neat but doesn't seem to have that high of a use case.
+
+
 
 ## Goals
+
+### Required
 - [x] Use cmake to enable easier crossplatform developement
 - [x] Add unit test framework to enable faster iterations
 - [x] Remove hard coding of system parameters to enable users to experiment
@@ -27,22 +34,30 @@ Specifically, I assume it is not using it in my usage because I'm doing small ma
     - [] Allow modification of playback speed, currently set at compile time
 - [x] Add a gui/visualization so that users can see the performance of their system
 - [x] Use Eigen for explicit vectorization to make matrix operations fast
-- [] Calculate K at Runtime using Eigen and Cuda.  Currently hitting unknown problems, result is just wrong. Probably an issue with the implemented calculation.
 - [x] Replace Eigen operations with Cuda kernels
     - [x] Demonstrate Eigen is faster, a better tool, than GPU for this job
+### Nice to have, 2.0
+- [] Calculate K at Runtime using Eigen and Cuda.  Currently hitting unknown problems, result is just wrong. Probably an issue with the implemented calculation.
 - [] Switch from LQR to dLQR
+- [] Make simulation dynamic and interactive
 - [] If there are multiple implementations of the same calculations, provide timing analysis
 - [] Reimplement all calculations to be done by gpu and time against hybrid and Eigen only
 - [] Possibly incorporate WASM and WASM hardware acceleration
 - [] Overall, clean everything up.  It's pretty sloppy right now.
 
-## Requirements to Run
+## Requirements to Build/Run
 
 - Qt5 Installed
 - Cmake Installed
 - Cuda compatible device and Cuda Installed
 - Git
 - Qt Creator Suggested, makes it easier to run.
+
+## Build Steps
+
+- Open cmakelists.txt as a project in QtCreator/Clion
+- Use defaults, build/run
+- From command line: maybe just run "cmake ." or "cmake install"? Haven't tested or tried this.
 
 ### Visualization
 
@@ -89,4 +104,4 @@ The time differences are large enough that anecdotal evidence expresses the diff
 Eigen only, visual starts almost instantly.
 Eigen + Cuda, visual starts between 30 seconds and a minute for inputs between 10,000 and 50,000
 
-Final note, transferring all the calculations to a gpu device might be faster than a hybrid approach
+Final note, transferring all the calculations to a gpu device might be faster than a hybrid approach.  For instance the entire trajectory could be vectorized which would reduce the data transfer.
