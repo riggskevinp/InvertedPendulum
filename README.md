@@ -39,15 +39,7 @@ You can use Eigen inside of Cuda kernels which is neat but doesn't seem to have 
 - [x] Use Eigen for explicit vectorization to make matrix operations fast
 - [x] Replace Eigen operations with Cuda kernels
     - [x] Demonstrate Eigen is faster, a better tool, than GPU for this job
-### Nice to have, 2.0
-- [] Allow runtime modification of playback speed, currently set at compile time
-- [] Calculate K at Runtime using Eigen and Cuda.  Currently hitting unknown problems, result is just wrong. Probably an issue with the implemented calculation.
-- [] Switch from LQR to dLQR
-- [] Make simulation dynamic and interactive
-- [] If there are multiple implementations of the same calculations, provide timing analysis
-- [] Reimplement all calculations to be done by gpu and time against hybrid and Eigen only
-- [] Possibly incorporate WASM and WASM hardware acceleration
-- [] Overall, clean everything up.  It's pretty sloppy right now.
+
 
 ## Requirements to Build/Run
 
@@ -109,3 +101,13 @@ Eigen only, visual starts almost instantly.
 Eigen + Cuda, visual starts between 30 seconds and a minute for inputs between 10,000 and 50,000
 
 Final note, transferring all the calculations to a gpu device might be faster than a hybrid approach.  For instance the entire trajectory could be vectorized which would reduce the data transfer.
+
+### Next steps, 2.0
+- [] Allow runtime modification of playback speed, currently set at compile time
+- [] Calculate K at Runtime using Eigen and Cuda.  Currently hitting unknown problems, result is just wrong. Probably an issue with the implemented calculation.
+- [] Switch from LQR to dLQR
+- [] Make simulation dynamic and interactive
+- [] If there are multiple implementations of the same calculations, provide timing analysis
+- [] Reimplement all calculations to be done by gpu and time against hybrid and Eigen only
+- [] Possibly incorporate WASM and WASM hardware acceleration
+- [] Overall, clean everything up.  It's pretty sloppy right now.
