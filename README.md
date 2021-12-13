@@ -1,5 +1,9 @@
 # Inverted Pendulum Simulation
 
+What is an inverted pendulum?  
+https://en.wikipedia.org/wiki/Inverted_pendulum#:~:text=An%20inverted%20pendulum%20is%20a,additional%20help%20will%20fall%20over.&text=Most%20applications%20limit%20the%20pendulum,to%20an%20axis%20of%20rotation.
+https://spectrum.ieee.org/whoa-quadrotors-play-catch-with-inverted-pendulum#toggle-gdpr
+
 ## Background
 
 It was strangely difficult for me to come up with a gpgpu/hetergenous computing application I was interested in.
@@ -31,12 +35,12 @@ You can use Eigen inside of Cuda kernels which is neat but doesn't seem to have 
 - [x] Remove hard coding of system parameters to enable users to experiment
     - [x] Refactor to use xml configs
     - [x] Calculate dependent variables dynamically
-    - [] Allow modification of playback speed, currently set at compile time
 - [x] Add a gui/visualization so that users can see the performance of their system
 - [x] Use Eigen for explicit vectorization to make matrix operations fast
 - [x] Replace Eigen operations with Cuda kernels
     - [x] Demonstrate Eigen is faster, a better tool, than GPU for this job
 ### Nice to have, 2.0
+- [] Allow runtime modification of playback speed, currently set at compile time
 - [] Calculate K at Runtime using Eigen and Cuda.  Currently hitting unknown problems, result is just wrong. Probably an issue with the implemented calculation.
 - [] Switch from LQR to dLQR
 - [] Make simulation dynamic and interactive
